@@ -1,4 +1,5 @@
 require 'scrabbler'
+require 'benchmark'
 
 describe Scrabbler do
 
@@ -48,6 +49,74 @@ describe Scrabbler do
     expect(subject.scrabblefy!("noise")).to eq ["nies (4)", "noes (4)", "onie (4)", "eosin (5)", "noise (5)"]
   end
 
+  describe 'build index' do
 
+    context 'array of size 1' do
+
+      let(:array) { ["HELLO"] }
+
+      it 'should return an index with 1 entry' do
+        expect(subject.build_index(array).count).to eq 1
+      end
+
+      it 'uses the first two letters as the key' do
+        array = ["BIRD"]
+        expect(subject.build_index(array)).to eq "BI" => [0,0]
+      end
+
+      it 'returns a value of [0,0]' do
+        expect(subject.build_index(array)["HE"]).to eq [0,0]
+      end
+
+    end
+
+    context 'array of size 2 with same 2 starting letters' do
+
+      let(:array) {["HELLO", "HELP"]}
+
+      it 'should return an index with 1 entry' do
+        expect(subject.build_index(array).count).to eq 1
+      end
+
+      it 'returns a value of [0,0]' do
+        expect(subject.build_index(array)["HE"]).to eq [0,1]
+      end
+
+    end
+
+    context 'array of size 2 with same initial letter only' do
+
+      let(:array) {["HELLO", "HIKE"]}
+
+      it 'should return two indices for two entries' do
+        expect(subject.build_index(array).count).to eq 2
+      end
+
+      it 'has both keys' do
+        hash = subject.build_index array
+        ['HE', 'HI'].each do |key|
+          expect(hash).to have_key key
+        end
+      end
+
+      it 'returns the correct indexes' do
+        hash = subject.build_index array
+        [[0,0], [1,1]].each do |value|
+          expect(hash).to have_value value
+        end
+      end
+
+    end
+
+    describe 'execution times' do
+
+      it 'show me the method execution times' do
+        p Benchmark.measure{ subject.scrabblefy!("codejam", 15)}
+        p subject.scrabblefy!("codejam", 15)
+      end
+
+    end
+
+  end
 
 end
