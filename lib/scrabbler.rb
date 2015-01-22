@@ -50,21 +50,16 @@ class Scrabbler
   def sort_by_value(anagrams)
     hash = Hash.new
     anagrams.each{|word| hash["#{word}"] = valuate(word)}
-    hash.sort_by{|key, value| value}
-    hash.keys
+    sorted_pairs = hash.sort_by{|key, value| value}
+    sorted_pairs.map{|elem| "#{elem[0]} (#{elem[1]})"}
   end
 
   def scrabblefy!(string, number = 5)
     anagrams = find_all_lengths(string)
-    p anagrams
     trimmed_anagrams = trim_repeats(anagrams)
     verified_anagrams = trim_nonwords(trimmed_anagrams)
     results = sort_by_value(verified_anagrams)
-    if number >= results.length
-      results
-    else
-      results[-number..-1]
-    end
+    number >= results.length ? results : results[-number..-1]
   end
 
 end

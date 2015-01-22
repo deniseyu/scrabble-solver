@@ -40,12 +40,12 @@ describe Scrabbler do
   end
 
   it 'sorts words by point value' do
-    anagrams = ["cat", "pig", "hare", "jackelope"]
-    expect(subject.sort_by_value(anagrams)).to eq ["cat", "pig", "hare", "jackelope"]
+    anagrams = ["kangaroo", "cat", "pig", "hare", "jackelope"]
+    expect(subject.sort_by_value(anagrams)).to eq ["cat (5)", "pig (6)", "hare (7)", "kangaroo (13)", "jackelope (24)"]
   end
 
-  it 'returns top 10 anagrams by default for a string' do
-    expect(subject.scrabblefy!("posey")).to eq ["ani", "ain", "no", "na", "in", "io", "on", "oi", "an", "ai"]
+  it 'returns top 5 anagrams by default for a string' do
+    expect(subject.scrabblefy!("noise")).to eq ["nies (4)", "noes (4)", "onie (4)", "eosin (5)", "noise (5)"]
   end
 
 
