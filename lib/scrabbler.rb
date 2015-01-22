@@ -38,7 +38,6 @@ class Scrabbler
     word = word.upcase
     range = @index[word[0,2]]
     return false unless range
-    # dictionary = JSON.parse(File.open('./short_words.rb').read)
     @dictionary[range.first..range.last].include?(word)
   end
 
