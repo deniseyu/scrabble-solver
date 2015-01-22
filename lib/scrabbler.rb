@@ -12,7 +12,8 @@ class Scrabbler
   end
 
   def verify(word)
-    dictionary = JSON.parse(File.open('./short_words.rb').read)
+    first_letter = word[0].downcase
+    dictionary = JSON.parse(File.open('./'+"#{first_letter}"+'_short_words.rb').read)
     # dictionary = Set.new(words)
     dictionary.include?(word.upcase)
   end
