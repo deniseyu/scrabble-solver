@@ -1,0 +1,5 @@
+config.ru
+alt_dictionary.md
+scrabble_dictionary.md
+spec/features/
+spec/spec_helper.rb
