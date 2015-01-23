@@ -1,0 +1,13 @@
+<h1>Cheat at Scrabble!</h1>
+
+<form action='/' method='post'>
+What letters do you have? Type as one string, i.e. "AEKDLQE". You can enter a max of 9 characters.
+<input type='text' id='letters' name='letters' maxlength='9'>
+How many results do you want?
+<input type='text' id='number' name='number'>
+<input type='submit' value='Go!' id='submit-button'>
+</form>
+
+<% if @result %>
+  <%= @result %>
+<% end %>

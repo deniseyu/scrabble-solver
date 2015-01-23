@@ -1,5 +1,4 @@
 require 'scrabbler'
-require 'benchmark'
 
 describe Scrabbler do
 
@@ -104,15 +103,6 @@ describe Scrabbler do
         [[0,0], [1,1]].each do |value|
           expect(hash).to have_value value
         end
-      end
-
-    end
-
-    describe 'execution times' do
-
-      it 'show me the method execution times' do
-        p Benchmark.measure{ subject.scrabblefy!("codejam", 15)}
-        p subject.scrabblefy!("codejam", 15)
       end
 
     end
