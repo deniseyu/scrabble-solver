@@ -1,4 +1,5 @@
 alt_dictionary.md
-scrabble_dictionary.md
-spec/features/
-spec/spec_helper.rb
+short_words.rb
+word_index.rb
+a_short_words.rb
+dictionary.md
