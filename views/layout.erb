@@ -1,12 +1,20 @@
 <!DOCTYPE HTML>
 <HTML>
 <head>
-  <title>Scrabble Cheaters</title>
+  <title>Scrabble for Cheaters</title>
+  <link rel='stylesheet' type='text/css' href='/stylesheets/reset.css'>
   <link rel='stylesheet' type='text/css' href='/stylesheets/app.css'>
 </head>
 <body>
-  <%= yield %>
-  <section id='background'>
-  </section>
+  <header id='page-header'>
+    <a href='/'><h1>Scrabblegram</h1></a>
+    <nav id='nav-buttons'>
+      <a href='/about'><img src='/images/help.png'></a>
+      <a href='https://github.com/deniseyu/scrabble-solver'><img src='/images/github.png'></a>
+    </nav>
+  </header>
+  <main id='page-main'>
+    <%= yield %>
+  </main>
 </body>
 </HTML>

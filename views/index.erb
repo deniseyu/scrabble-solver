@@ -1,13 +1,32 @@
-<h1>Cheat at Scrabble!</h1>
+<div class="section group">
+  <div class="col span_1_of_2">
+    <section id='left-section'>
+      <form action='/' method='post'>
+        <input type='text' id='letters' name='letters' maxlength='9' placeholder='your letters (max 9)'>
+        <input type='text' id='number' name='number' placeholder='# results?'>
+        <input type='submit' value='Go!' id='submit-button'>
+      </form>
+      <% if @result %>
+        <section id='results-section'>
+          <% @result.reverse.each do |result| %>
+            <article class='result-container'><%= result %></article>
+          <% end %>
+        </section>
+      <% end %>
+    </section>
+  </div>
 
-<form action='/' method='post'>
-What letters do you have? Type as one string, i.e. "AEKDLQE". You can enter a max of 9 characters.
-<input type='text' id='letters' name='letters' maxlength='9'>
-How many results do you want?
-<input type='text' id='number' name='number'>
-<input type='submit' value='Go!' id='submit-button'>
-</form>
-
-<% if @result %>
-  <%= @result %>
-<% end %>
+  <div class="col span_2_of_2">
+    <section id='right-section'>
+      <h1>Letter Values</h1>
+      <table id='letter-value-table'>
+      <% @values.each do |key, value| %>
+      <tr>
+        <td class='letter-td'><%= key %></td>
+        <td class='number-td'><%= value %></td>
+      </tr>
+      <% end %>
+      </table>
+    </section>
+  </div>
+</div>

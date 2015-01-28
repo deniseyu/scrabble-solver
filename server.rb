@@ -8,16 +8,21 @@ class ScrabblerApp < Sinatra::Application
   include Rack::Utils
   alias_method :h, :escape_html
 
+  SCRABBLER = Scrabbler.new
   get '/' do
+    @values = SCRABBLER.values
     erb :index
   end
 
   post '/' do
-    p params
-    scrabbler = Scrabbler.new
-    @result = scrabbler.scrabblefy!(params[:letters], params[:number].to_i)
-    p @result
+    @values = SCRABBLER.values
+    @result = SCRABBLER.scrabblefy!(params[:letters], params[:number].to_i)
     erb :index
   end
+
+  get '/about' do
+    erb :about
+  end
+
 
 end
